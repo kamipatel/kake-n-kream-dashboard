@@ -16,15 +16,61 @@ export default function Dashboard() {
 
   useEffect(() => { fetchOrders(); }, []);
 
+  const parseCSV = (text) => {
+    const rows = [];
+    let row = [];
+    let field = "";
+    let inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (inQuotes) {
+        if (ch === '"' && text[i + 1] === '"') { field += '"'; i++; }
+        else if (ch === '"') { inQuotes = false; }
+        else { field += ch; }
+      } else {
+        if (ch === '"') { inQuotes = true; }
+        else if (ch === ",") { row.push(field); field = ""; }
+        else if (ch === "\n" || (ch === "\r" && text[i + 1] === "\n")) {
+          row.push(field); field = "";
+          if (row.length > 1 || row[0] !== "") rows.push(row);
+          row = [];
+          if (ch === "\r") i++;
+        } else { field += ch; }
+      }
+    }
+    if (field || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  };
+
+  const parsePickupDate = (val) => {
+    if (!val) return "";
+    const d = new Date(val);
+    if (isNaN(d)) return val;
+    return d.toISOString().split("T")[0];
+  };
+
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/orders");
+      const res = await fetch(
+        "https://docs.google.com/spreadsheets/d/1zBPMxSQg8zKKVXbCKNbIjU30-YFPDExGuop_MCklhyg/gviz/tq?tqx=out:csv"
+      );
       if (!res.ok) throw new Error("Failed to load");
-      const data = await res.json();
-      // Formspree returns { submissions: [...] }
-      const subs = data.submissions || data || [];
-      setOrders(Array.isArray(subs) ? subs : []);
+      const text = await res.text();
+      const rows = parseCSV(text);
+      // Skip header row, map columns to order fields
+      const mapped = rows.slice(1).map((r) => ({
+        _date: r[0] || "",
+        firstName: r[1] || "",
+        lastName: r[2] || "",
+        email: r[3] || "",
+        phone: r[4] || "",
+        pickupDate: parsePickupDate(r[5]),
+        order: r[6] || "",
+        allergies: r[7] || "",
+        notes: r[8] || "",
+      }));
+      setOrders(mapped);
     } catch (e) {
       setError(e.message);
     } finally {
@@ -123,7 +169,7 @@ export default function Dashboard() {
           <div style={{ textAlign: "center", padding: "60px 0" }}>
             <div style={{ fontSize: 28, marginBottom: 8 }}>⚠️</div>
             <p style={{ fontSize: 14, color: C.red, fontWeight: 600 }}>{error}</p>
-            <p style={{ fontSize: 12, color: C.muted, marginTop: 6 }}>Make sure FORMSPREE_API_KEY is set in Vercel environment variables.</p>
+            <p style={{ fontSize: 12, color: C.muted, marginTop: 6 }}>Could not load orders from Google Sheets.</p>
           </div>
         )}
 
