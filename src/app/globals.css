@@ -1,5 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Nunito', sans-serif; background: #FAFAFA; color: #2A2230; -webkit-font-smoothing: antialiased; }
-::selection { background: #F2A0B522; }
+body { font-family: 'Nunito', sans-serif; background: #FEF3C7; color: #78350F; -webkit-font-smoothing: antialiased; }
+::selection { background: #B4530933; }
+
+/* Focus states for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid #92400E;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Order card hover */
+.order-card {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.order-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(146, 64, 14, 0.1);
+}
+
+/* Filter button hover */
+.filter-btn {
+  transition: all 200ms ease;
+}
+.filter-btn:hover {
+  opacity: 0.85;
+}
+
+/* Refresh button hover */
+.refresh-btn {
+  transition: all 200ms ease;
+}
+.refresh-btn:hover {
+  background: #FEF3C7 !important;
+  border-color: #92400E !important;
+  color: #92400E !important;
+}
+.refresh-btn:active {
+  transform: scale(0.97);
+}
+
+/* Skeleton shimmer animation */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #EDEEF0 25%, #FDE68A44 50%, #EDEEF0 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
