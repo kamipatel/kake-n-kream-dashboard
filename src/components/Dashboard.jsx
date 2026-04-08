@@ -55,7 +55,7 @@ export default function Dashboard() {
     setError(null);
     try {
       const res = await fetch(
-        "https://docs.google.com/spreadsheets/d/1zBPMxSQg8zKKVXbCKNbIjU30-YFPDExGuop_MCklhyg/gviz/tq?tqx=out:csv"
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vSL74L9ZchvRz6MdlQt4s-Ktb6Z40WPftyuhT_TI19H8jCXoqbxf2tUpQLEZ480ir0UDFOoj-GjSxAn/pub?output=csv"
       );
       if (!res.ok) throw new Error("Failed to load");
       const text = await res.text();
