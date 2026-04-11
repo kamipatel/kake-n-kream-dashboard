@@ -1,39 +1,42 @@
 export const C = {
-  // Core palette (Bakery/Cafe from UI/UX Pro Max)
-  primary: "#92400E",
-  secondary: "#B45309",
-  bg: "#FEF3C7",
-  fg: "#78350F",
-  border: "#FDE68A",
+  // Core palette — Kake N Kream bakery-chic brand
+  primary: "#FF69B4",       // hot pink — buttons, active states
+  secondary: "#FFD54F",     // bright yellow — accents
+  brown: "#5C3A28",         // chocolate brown — headings, header bar
+  bg: "#FFFAF7",            // warm white — page background
+  bgAlt: "#FFF5F0",         // faint pink-cream — section bg
+  fg: "#2A1810",            // dark brown — primary text
+  sub: "#5C3A28CC",         // ~80% brown — secondary text
   card: "#FFFFFF",
-  muted: "#EDEEF0",
-  mutedFg: "#64748B",
+  border: "#5C3A2826",      // subtle brown (~15% alpha)
+  borderStrong: "#5C3A28",
+  muted: "#FFF5F0",
+  mutedFg: "#5C3A2899",
   destructive: "#DC2626",
 
-  // Semantic: badges
-  upcoming: "#92400E",
-  upcomingBg: "#FEF3C7",
-  past: "#9CA3AF",
-  pastBg: "#F3F4F6",
+  // Status badges (binary — driven by pickupDate >= today)
+  upcoming: "#FFFFFF",       // "Upcoming" — white text on hot pink
+  upcomingBg: "#FF69B4",
+  past: "#5C3A28CC",         // "Past" — muted brown text
+  pastBg: "#FFF5F0",         // faint pink-cream bg
 
-  // Semantic: card accent bars
-  accent: "#B45309",
-  accentPast: "#D1D5DB",
+  // Card border-left accents
+  accent: "#FF69B4",         // upcoming — hot pink bar
+  accentPast: "#D6C5B8",     // past — muted tan bar
 
-  // Semantic: subdued text
-  sub: "#92400E99",
-  link: "#B45309",
+  // Link / subdued
+  link: "#FF69B4",
 
   // Stats tints
-  statTotal: "#FBBF24",
-  statUpcoming: "#F59E0B",
-  statPast: "#9CA3AF",
+  statTotal: "#FF69B4",
+  statUpcoming: "#FFD54F",
+  statPast: "#5C3A28",
 
   // Allergy / notes sections
   allergyBg: "#FEE2E2",
-  allergyBorder: "#FECACA",
-  allergyText: "#DC2626",
-  notesBg: "#FEF3C7",
-  notesBorder: "#FDE68A",
-  notesText: "#92400E",
+  allergyBorder: "#FCA5A5",
+  allergyText: "#B91C1C",
+  notesBg: "#FFF8E1",
+  notesBorder: "#FFD54F",
+  notesText: "#5C3A28",
 };

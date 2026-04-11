@@ -1,9 +1,9 @@
 import { C } from "./theme";
 
 const stats = [
-  { key: "total", label: "Total Orders", color: C.statTotal, tint: "#FBBF2410" },
-  { key: "upcoming", label: "Upcoming", color: C.statUpcoming, tint: "#F59E0B10" },
-  { key: "past", label: "Past", color: C.statPast, tint: "#F3F4F6" },
+  { key: "total", label: "Total Orders", color: C.statTotal, tint: "#FF69B414" },
+  { key: "upcoming", label: "Upcoming", color: C.statUpcoming, tint: "#FFD54F20" },
+  { key: "past", label: "Past", color: C.statPast, tint: "#5C3A2810" },
 ];
 
 export default function StatsBar({ orders, today }) {

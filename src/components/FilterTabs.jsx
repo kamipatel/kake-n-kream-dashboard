@@ -39,7 +39,7 @@ export default function FilterTabs({ filter, onFilterChange }) {
             cursor: "pointer",
             background: filter === key ? C.primary : "transparent",
             color: filter === key ? "#FFFFFF" : C.fg,
-            boxShadow: filter === key ? "0 2px 8px rgba(146, 64, 14, 0.15)" : "none",
+            boxShadow: filter === key ? "0 2px 8px rgba(255, 105, 180, 0.25)" : "none",
           }}
         >
           {label}

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { C } from "./theme";
-import { CupcakeIcon, RefreshIcon } from "./icons";
+import { RefreshIcon } from "./icons";
 import StatsBar from "./StatsBar";
 import FilterTabs from "./FilterTabs";
 import OrderCard from "./OrderCard";
@@ -96,9 +96,12 @@ export default function Dashboard() {
   });
 
   return (
-    <div style={{ minHeight: "100dvh", background: C.bg, padding: "0 16px" }}>
-      <header style={{ maxWidth: 800, margin: "0 auto", padding: "32px 0 24px" }}>
+    <div style={{ minHeight: "100dvh", background: C.bg }}>
+      {/* Chocolate brown header bar — spans full width */}
+      <div style={{ background: C.brown, padding: "20px 16px" }}>
         <div style={{
+          maxWidth: 800,
+          margin: "0 auto",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -106,20 +109,20 @@ export default function Dashboard() {
           gap: 12,
         }}>
           <div>
-            <h1 style={{
+            <img
+              src="/images/logo-text.png"
+              alt="Kake N Kream"
+              style={{ height: 44, display: "block" }}
+            />
+            <p style={{
               fontFamily: "'Fredoka', sans-serif",
-              fontSize: 24,
-              fontWeight: 700,
-              color: C.fg,
-              margin: 0,
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
+              fontSize: 13,
+              color: C.bgAlt,
+              marginTop: 4,
+              letterSpacing: 0.3,
             }}>
-              <CupcakeIcon size={28} color={C.primary} />
-              Kake N Kream
-            </h1>
-            <p style={{ fontSize: 14, color: C.sub, marginTop: 2 }}>Order Dashboard</p>
+              Order Dashboard
+            </p>
           </div>
           <button
             onClick={fetchOrders}
@@ -131,25 +134,29 @@ export default function Dashboard() {
               fontWeight: 700,
               padding: "10px 18px",
               borderRadius: 10,
-              border: `1px solid ${C.border}`,
-              background: C.card,
-              color: C.primary,
+              border: "none",
+              background: C.primary,
+              color: "#FFFFFF",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               gap: 6,
+              boxShadow: "0 2px 8px rgba(255, 105, 180, 0.35)",
             }}
           >
             <RefreshIcon size={16} />
             Refresh
           </button>
         </div>
+      </div>
 
+      {/* Stats + filter tabs container */}
+      <header style={{ maxWidth: 800, margin: "0 auto", padding: "24px 16px 16px" }}>
         {!loading && !error && <StatsBar orders={orders} today={today} />}
         <FilterTabs filter={filter} onFilterChange={setFilter} />
       </header>
 
-      <main style={{ maxWidth: 800, margin: "0 auto", paddingBottom: 48 }}>
+      <main style={{ maxWidth: 800, margin: "0 auto", padding: "0 16px 48px" }}>
         {loading && <LoadingSkeleton />}
 
         {error && (

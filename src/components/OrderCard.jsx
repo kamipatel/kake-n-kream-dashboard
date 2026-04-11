@@ -67,7 +67,7 @@ export default function OrderCard({ order, today }) {
             fontWeight: 700,
             background: isUpcoming ? C.upcomingBg : C.pastBg,
             color: isUpcoming ? C.upcoming : C.past,
-            border: `1px solid ${isUpcoming ? C.border : "#E5E7EB"}`,
+            border: `1px solid ${isUpcoming ? C.upcomingBg : C.border}`,
           }}>
             {isUpcoming ? "Upcoming" : "Past"}
           </span>
@@ -92,7 +92,7 @@ export default function OrderCard({ order, today }) {
         <div style={{
           padding: "10px 14px",
           borderRadius: 10,
-          background: C.bg,
+          background: C.bgAlt,
           border: `1px solid ${C.border}`,
           marginBottom: 8,
         }}>
