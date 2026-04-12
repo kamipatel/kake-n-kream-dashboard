@@ -98,7 +98,7 @@ export default function Dashboard() {
   return (
     <div style={{ minHeight: "100dvh", background: C.bg }}>
       {/* Chocolate brown header bar — spans full width */}
-      <div style={{ background: C.brown, padding: "20px 16px" }}>
+      <div style={{ background: C.brown, padding: "16px 16px" }}>
         <div style={{
           maxWidth: 800,
           margin: "0 auto",
@@ -108,21 +108,22 @@ export default function Dashboard() {
           flexWrap: "wrap",
           gap: 12,
         }}>
-          <div>
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             <img
               src="/images/logo-text.png"
               alt="Kake N Kream"
-              style={{ height: 44, display: "block" }}
+              style={{ width: 130, display: "block" }}
             />
-            <p style={{
+            <span style={{
               fontFamily: "'Fredoka', sans-serif",
-              fontSize: 13,
-              color: C.bgAlt,
-              marginTop: 4,
+              fontSize: 15,
+              fontWeight: 600,
+              color: "#FFFAF7",
               letterSpacing: 0.3,
+              opacity: 0.85,
             }}>
               Order Dashboard
-            </p>
+            </span>
           </div>
           <button
             onClick={fetchOrders}

@@ -17,7 +17,7 @@ body { font-family: 'Nunito', sans-serif; background: #FFFAF7; color: #2A1810; -
 }
 .order-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(92, 58, 40, 0.12);
+  box-shadow: 0 8px 25px rgba(232, 216, 208, 0.5);
 }
 
 /* Filter button hover */

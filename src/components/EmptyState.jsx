@@ -1,5 +1,5 @@
 import { C } from "./theme";
-import { WarningIcon, EmptyBoxIcon } from "./icons";
+import { WarningIcon } from "./icons";
 
 export default function EmptyState({ type = "empty", message, detail, filter, onRetry }) {
   const isError = type === "error";
@@ -16,17 +16,21 @@ export default function EmptyState({ type = "empty", message, detail, filter, on
         {isError ? (
           <WarningIcon size={48} color={C.destructive} />
         ) : (
-          <EmptyBoxIcon size={48} color={C.sub} />
+          <img
+            src="/images/logo-icon.png"
+            alt=""
+            style={{ width: 64, height: 64, opacity: 0.3 }}
+          />
         )}
       </div>
       <p style={{
         fontFamily: "'Fredoka', sans-serif",
         fontSize: 16,
         fontWeight: 600,
-        color: isError ? C.destructive : C.fg,
+        color: isError ? C.destructive : C.sub,
         marginBottom: 4,
       }}>
-        {message || (isError ? "Something went wrong" : `No orders ${filter && filter !== "all" ? `(${filter})` : "yet"}`)}
+        {message || (isError ? "Something went wrong" : "No orders yet")}
       </p>
       {(detail || isError) && (
         <p style={{ fontSize: 14, color: C.sub, marginBottom: isError ? 16 : 0 }}>
@@ -42,7 +46,7 @@ export default function EmptyState({ type = "empty", message, detail, filter, on
             fontWeight: 700,
             padding: "10px 24px",
             borderRadius: 10,
-            border: `1px solid ${C.border}`,
+            border: "none",
             background: C.primary,
             color: "#FFFFFF",
             cursor: "pointer",

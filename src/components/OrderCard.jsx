@@ -14,13 +14,26 @@ function formatDate(d) {
   }
 }
 
+const STATUS = {
+  new:       { label: "New",       bg: C.newBg,       fg: C.newFg,       accent: C.accent },
+  confirmed: { label: "Confirmed", bg: C.confirmedBg, fg: C.confirmedFg, accent: C.accentConfirmed },
+  completed: { label: "Completed", bg: C.completedBg, fg: C.completedFg, accent: C.accentCompleted },
+};
+
+function getStatus(pickup, today) {
+  if (!pickup || pickup < today) return "completed";
+  if (pickup === today) return "confirmed";
+  return "new";
+}
+
 export default function OrderCard({ order, today }) {
   const name =
     [order.firstName, order.lastName].filter(Boolean).join(" ") ||
     order.name ||
     "\u2014";
   const pickup = order.pickupDate || order.date || "";
-  const isUpcoming = pickup >= today;
+  const status = getStatus(pickup, today);
+  const s = STATUS[status];
   const items = order.order || order.items || "";
 
   return (
@@ -33,7 +46,7 @@ export default function OrderCard({ order, today }) {
         borderRadius: 14,
         padding: "18px 20px",
         border: `1px solid ${C.border}`,
-        borderLeft: `4px solid ${isUpcoming ? C.accent : C.accentPast}`,
+        borderLeft: `4px solid ${s.accent}`,
       }}
     >
       {/* Top row: name + pickup */}
@@ -49,7 +62,7 @@ export default function OrderCard({ order, today }) {
             fontFamily: "'Fredoka', sans-serif",
             fontSize: 17,
             fontWeight: 700,
-            color: C.fg,
+            color: C.brown,
           }}>
             {name}
           </div>
@@ -65,11 +78,11 @@ export default function OrderCard({ order, today }) {
             borderRadius: 6,
             fontSize: 12,
             fontWeight: 700,
-            background: isUpcoming ? C.upcomingBg : C.pastBg,
-            color: isUpcoming ? C.upcoming : C.past,
-            border: `1px solid ${isUpcoming ? C.upcomingBg : C.border}`,
+            background: s.bg,
+            color: s.fg,
+            border: `1px solid ${s.bg === "#FFFFFF" ? C.border : s.bg}`,
           }}>
-            {isUpcoming ? "Upcoming" : "Past"}
+            {s.label}
           </span>
           <div style={{
             fontSize: 14,

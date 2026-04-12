@@ -10,15 +10,7 @@ export default function Footer() {
       borderTop: `1px solid ${C.border}`,
     }}>
       <p style={{ fontSize: 13, color: C.sub }}>
-        Kake N Kream Dashboard &middot; Built by{" "}
-        <a
-          href="https://foundry-red.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: C.link, textDecoration: "none", fontWeight: 600 }}
-        >
-          Foundry
-        </a>
+        Kake N Kream &middot; St. Charles, MO
       </p>
     </footer>
   );
