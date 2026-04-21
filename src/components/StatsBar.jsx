@@ -1,9 +1,28 @@
 import { C } from "./theme";
+import { BoxIcon, ClockIcon, TrendUpIcon } from "./icons";
 
 const stats = [
-  { key: "total", label: "Total Orders", color: C.statTotal, tint: "#FF69B414" },
-  { key: "upcoming", label: "Upcoming", color: C.statUpcoming, tint: "#FFD54F20" },
-  { key: "past", label: "Past", color: C.statPast, tint: "#5C3A2810" },
+  { 
+    key: "total", 
+    label: "Total Orders", 
+    color: C.primary, 
+    bg: C.primarySoft,
+    icon: (size, color) => <BoxIcon size={size} color={color} />
+  },
+  { 
+    key: "upcoming", 
+    label: "Upcoming", 
+    color: C.secondary, 
+    bg: C.secondarySoft,
+    icon: (size, color) => <ClockIcon size={size} color={color} />
+  },
+  { 
+    key: "past", 
+    label: "Past Orders", 
+    color: C.brown, 
+    bg: C.muted,
+    icon: (size, color) => <TrendUpIcon size={size} color={color} />
+  },
 ];
 
 export default function StatsBar({ orders, today }) {
@@ -14,7 +33,7 @@ export default function StatsBar({ orders, today }) {
   };
 
   return (
-    <div style={{ display: "flex", gap: 10, marginTop: 18, flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: 12, marginTop: 24, flexWrap: "wrap" }}>
       {stats.map((s) => (
         <div
           key={s.key}
@@ -22,25 +41,49 @@ export default function StatsBar({ orders, today }) {
           aria-label={`${s.label}: ${counts[s.key]}`}
           style={{
             flex: 1,
-            minWidth: 100,
-            padding: "16px 18px",
-            borderRadius: 12,
-            background: s.tint,
+            minWidth: 140,
+            padding: "20px 24px",
+            borderRadius: 16,
+            background: C.card,
             border: `1px solid ${C.border}`,
-            borderLeft: `4px solid ${s.color}`,
+            boxShadow: C.shadowSm,
+            display: "flex",
+            alignItems: "center",
+            gap: 16,
           }}
         >
           <div style={{
-            fontSize: 28,
-            fontWeight: 700,
-            fontFamily: "'Fredoka', sans-serif",
-            color: s.color,
-            lineHeight: 1.2,
+            width: 48,
+            height: 48,
+            borderRadius: 12,
+            background: s.bg,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
           }}>
-            {counts[s.key]}
+            {s.icon(22, s.color)}
           </div>
-          <div style={{ fontSize: 14, color: C.fg, fontWeight: 600, marginTop: 2 }}>
-            {s.label}
+          <div>
+            <div style={{
+              fontSize: 26,
+              fontWeight: 500,
+              fontFamily: "'DM Sans', sans-serif",
+              color: C.brown,
+              lineHeight: 1,
+            }}>
+              {counts[s.key]}
+            </div>
+            <div style={{
+              fontSize: 13,
+              color: C.mutedFg,
+              fontWeight: 400,
+              marginTop: 4,
+              textTransform: "uppercase",
+              letterSpacing: 0.5
+            }}>
+              {s.label}
+            </div>
           </div>
         </div>
       ))}

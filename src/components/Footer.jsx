@@ -9,7 +9,7 @@ export default function Footer() {
       margin: "0 auto",
       borderTop: `1px solid ${C.border}`,
     }}>
-      <p style={{ fontSize: 13, color: C.sub }}>
+      <p style={{ fontSize: 13, color: "#9B7340" }}>
         Kake N Kream &middot; St. Charles, MO
       </p>
     </footer>

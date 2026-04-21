@@ -1,44 +1,77 @@
 export const C = {
-  // Core palette — Kake N Kream brand
-  primary: "#FF69B4",       // hot pink — buttons, active states
-  secondary: "#FFD54F",     // bright yellow — highlights, badges
-  brown: "#5C3A28",         // chocolate brown — headings, labels, header bar
-  bg: "#FFFAF7",            // warm white — page background
-  bgAlt: "#FFF5F0",         // faint pink-cream — section bg
-  fg: "#2A1810",            // dark brown — body text
-  sub: "#9B7340",           // muted gold — secondary text, footer
+  // Core palette — Kake N Kream brand refined
+  primary: "#FF69B4",       // hot pink
+  primarySoft: "#FF69B41A", // transparent pink
+  secondary: "#FFD54F",     // bright yellow
+  secondarySoft: "#FFD54F26",
+  brown: "#5C3A28",         // deeper chocolate brown
+  bg: "#FFFAF7",            // warm cream
+  bgAlt: "#FFF5F0",
+  fg: "#2A1810",            // dark brown
+  sub: "#6B5145",           // muted cocoa
   card: "#FFFFFF",
-  border: "#E8D8D0",        // warm brown border
-  muted: "#FFF5F0",
+  border: "#E8D8D0",
+  muted: "#F9F5F3",
   mutedFg: "#9B7340",
-  destructive: "#DC2626",
+  destructive: "#EF4444",
 
-  // Tri-state status badges (derived from pickupDate vs today)
-  newBg: "#FF69B4",         // "New" — hot pink
-  newFg: "#FFFFFF",
-  confirmedBg: "#FFD54F",   // "Confirmed" — yellow
-  confirmedFg: "#5C3A28",
-  completedBg: "#E8F5E9",   // "Completed" — light green
-  completedFg: "#4CAF50",
+  // Glassmorphism effects
+  glass: "rgba(255, 255, 255, 0.7)",
+  glassBorder: "rgba(255, 255, 255, 0.4)",
+  glassBlur: "blur(12px)",
 
-  // Card border-left accents
-  accent: "#FF69B4",        // new — hot pink bar
-  accentConfirmed: "#FFD54F",
-  accentCompleted: "#4CAF50",
+  // Elevation & Shadows
+  shadowSm: "0 1px 2px rgba(67, 40, 28, 0.05)",
+  shadowMd: "0 4px 12px -2px rgba(67, 40, 28, 0.08), 0 2px 6px -1px rgba(67, 40, 28, 0.04)",
+  shadowLg: "0 12px 24px -6px rgba(67, 40, 28, 0.12), 0 8px 16px -4px rgba(67, 40, 28, 0.06)",
 
-  // Link
-  link: "#FF69B4",
-
-  // Stats tints
-  statTotal: "#FF69B4",
-  statUpcoming: "#FFD54F",
-  statPast: "#5C3A28",
+  // Status Colors
+  status: {
+    new: {
+      bg: "#FF69B4",
+      fg: "#FFFFFF",
+      border: "#FF69B4",
+      accent: "#FF69B4",
+      softBg: "#FFEDF6",
+      softFg: "#D91B81",
+    },
+    confirmed: {
+      bg: "#FFD54F",
+      fg: "#5C3A28",
+      border: "#FFD54F",
+      accent: "#FFD54F",
+      softBg: "#FFF9DB",
+      softFg: "#856404",
+    },
+    completed: {
+      bg: "#4CAF50",
+      fg: "#FFFFFF",
+      border: "#4CAF50",
+      accent: "#4CAF50",
+      softBg: "#E8F5E9",
+      softFg: "#2E7D32",
+    },
+    cancelled: {
+      bg: "#E0E0E0",
+      fg: "#666666",
+      border: "#E0E0E0",
+      accent: "#999999",
+      softBg: "#F5F5F5",
+      softFg: "#666666",
+    },
+  },
 
   // Allergy / notes sections
-  allergyBg: "#FEE2E2",
-  allergyBorder: "#FCA5A5",
-  allergyText: "#B91C1C",
-  notesBg: "#FFF8E1",
-  notesBorder: "#FFD54F",
-  notesText: "#5C3A28",
+  allergy: {
+    bg: "#FEF2F2",
+    border: "#FEE2E2",
+    text: "#991B1B",
+    icon: "#DC2626"
+  },
+  notes: {
+    bg: "#FDFCF0",
+    border: "#F9F5D7",
+    text: "#43281C",
+    icon: "#B45309"
+  }
 };
