@@ -35,6 +35,22 @@ export const C = {
       softBg: "#FFEDF6",
       softFg: "#D91B81",
     },
+    pending: {
+      bg: "#FF69B4",
+      fg: "#FFFFFF",
+      border: "#FF69B4",
+      accent: "#FF69B4",
+      softBg: "#FFEDF6",
+      softFg: "#D91B81",
+    },
+    inProgress: {
+      bg: "#4FC3F7",
+      fg: "#FFFFFF",
+      border: "#4FC3F7",
+      accent: "#4FC3F7",
+      softBg: "#E1F5FE",
+      softFg: "#0277BD",
+    },
     confirmed: {
       bg: "#FFD54F",
       fg: "#5C3A28",

@@ -1,44 +1,38 @@
 import { C } from "./theme";
-import { BoxIcon, ClockIcon, TrendUpIcon } from "./icons";
+import { BoxIcon, ClockIcon, CheckIcon } from "./icons";
 
 const stats = [
-  { 
-    key: "total", 
-    label: "Total Orders", 
-    color: C.primary, 
+  {
+    key: "pending",
+    label: "Pending",
+    color: C.primary,
     bg: C.primarySoft,
-    icon: (size, color) => <BoxIcon size={size} color={color} />
+    icon: (size, color) => <BoxIcon size={size} color={color} />,
   },
-  { 
-    key: "upcoming", 
-    label: "Upcoming", 
-    color: C.secondary, 
-    bg: C.secondarySoft,
-    icon: (size, color) => <ClockIcon size={size} color={color} />
+  {
+    key: "inProgress",
+    label: "In Progress",
+    color: "#4FC3F7",
+    bg: "#E1F5FE",
+    icon: (size, color) => <ClockIcon size={size} color={color} />,
   },
-  { 
-    key: "past", 
-    label: "Past Orders", 
-    color: C.brown, 
-    bg: C.muted,
-    icon: (size, color) => <TrendUpIcon size={size} color={color} />
+  {
+    key: "completed",
+    label: "Completed",
+    color: "#4CAF50",
+    bg: "#E8F5E9",
+    icon: (size, color) => <CheckIcon size={size} color={color} />,
   },
 ];
 
-export default function StatsBar({ orders, today }) {
-  const counts = {
-    total: orders.length,
-    upcoming: orders.filter((o) => (o.pickupDate || "") >= today).length,
-    past: orders.filter((o) => (o.pickupDate || "") < today).length,
-  };
-
+export default function StatsBar({ statusCounts }) {
   return (
     <div style={{ display: "flex", gap: 12, marginTop: 24, flexWrap: "wrap" }}>
       {stats.map((s) => (
         <div
           key={s.key}
           role="status"
-          aria-label={`${s.label}: ${counts[s.key]}`}
+          aria-label={`${s.label}: ${statusCounts[s.key] || 0}`}
           style={{
             flex: 1,
             minWidth: 140,
@@ -72,7 +66,7 @@ export default function StatsBar({ orders, today }) {
               color: C.brown,
               lineHeight: 1,
             }}>
-              {counts[s.key]}
+              {statusCounts[s.key] || 0}
             </div>
             <div style={{
               fontSize: 13,
@@ -80,7 +74,7 @@ export default function StatsBar({ orders, today }) {
               fontWeight: 400,
               marginTop: 4,
               textTransform: "uppercase",
-              letterSpacing: 0.5
+              letterSpacing: 0.5,
             }}>
               {s.label}
             </div>
