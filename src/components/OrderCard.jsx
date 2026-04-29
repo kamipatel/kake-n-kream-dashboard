@@ -251,10 +251,8 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
               onClick={() => setDropdownOpen(!dropdownOpen)}
               aria-label={`Status: ${STATUS_LABELS[status]}. Click to change.`}
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                padding: "6px 10px 6px 12px",
+                display: "inline-block",
+                padding: "6px 12px",
                 borderRadius: 10,
                 fontSize: 12,
                 fontWeight: 600,
@@ -265,10 +263,10 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
                 letterSpacing: 0.5,
                 cursor: "pointer",
                 fontFamily: "'DM Sans', sans-serif",
+                lineHeight: 1.3,
               }}
             >
-              {STATUS_LABELS[status]}
-              <ChevronDownIcon size={10} color={s.fg} />
+              {STATUS_LABELS[status]} ▾
             </button>
 
             {dropdownOpen && (
@@ -389,17 +387,17 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
               minWidth: 200,
               padding: "12px 16px",
               borderRadius: 12,
-              background: C.allergy.bg,
-              border: `1px solid ${C.allergy.border}`,
+              background: "#FFF9E6",
+              border: "1px solid #F5E6C8",
               display: "flex",
               gap: 12,
             }}>
-              <AlertTriangleIcon size={18} color={C.allergy.icon} style={{ flexShrink: 0, marginTop: 2 }} />
+              <AlertTriangleIcon size={18} color="#5C3A28" style={{ flexShrink: 0, marginTop: 2 }} />
               <div>
-                <div style={{ fontSize: 11, fontWeight: 500, color: C.allergy.text, textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 2 }}>
+                <div style={{ fontSize: 11, fontWeight: 500, color: "#5C3A28", textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 2 }}>
                   Allergen Alert
                 </div>
-                <div style={{ fontSize: 13, fontWeight: 400, color: C.allergy.text, lineHeight: 1.4 }}>{order.allergies}</div>
+                <div style={{ fontSize: 13, fontWeight: 400, color: "#5C3A28", lineHeight: 1.4 }}>{order.allergies}</div>
               </div>
             </div>
           )}
@@ -408,19 +406,19 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
               flex: 1,
               minWidth: 200,
               padding: "12px 16px",
-              borderRadius: "0 12px 12px 0",
-              background: C.notes.bg,
-              border: `1px solid ${C.notes.border}`,
-              borderLeft: `3px solid ${C.notes.icon}`,
+              borderRadius: 12,
+              background: "#FFF5F0",
+              border: "1px solid #E8D8D0",
+              borderLeft: "3px solid #5C3A28",
               display: "flex",
               gap: 12,
             }}>
-              <NoteIcon size={18} color={C.notes.icon} style={{ flexShrink: 0, marginTop: 2 }} />
+              <NoteIcon size={18} color="#5C3A28" style={{ flexShrink: 0, marginTop: 2 }} />
               <div>
-                <div style={{ fontSize: 11, fontWeight: 500, color: C.notes.text, textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 2 }}>
+                <div style={{ fontSize: 11, fontWeight: 500, color: "#5C3A28", textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 2 }}>
                   Special Notes
                 </div>
-                <div style={{ fontSize: 13, fontWeight: 400, color: C.notes.text, lineHeight: 1.4 }}>{order.notes}</div>
+                <div style={{ fontSize: 13, fontWeight: 400, color: "#5C3A28", lineHeight: 1.4 }}>{order.notes}</div>
               </div>
             </div>
           )}

@@ -70,22 +70,7 @@ export default function FilterTabs({ filter, onFilterChange, pendingCount = 0 })
               gap: 4,
             }}
           >
-            {label}
-            {key === "pending" && pendingCount > 0 && (
-              <span style={{
-                background: C.primary,
-                color: "#FFFFFF",
-                fontSize: 10,
-                fontWeight: 600,
-                borderRadius: 8,
-                padding: "0px 5px",
-                minWidth: 16,
-                textAlign: "center",
-                lineHeight: "16px",
-              }}>
-                {pendingCount}
-              </span>
-            )}
+            {label}{key === "pending" && pendingCount > 0 ? ` (${pendingCount})` : ""}
           </button>
         ))}
       </div>
