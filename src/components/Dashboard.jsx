@@ -385,7 +385,7 @@ export default function Dashboard() {
           marginBottom: 16,
         }}>
           <div>
-            <div style={{ fontSize: 12, fontWeight: 500, color: C.mutedFg, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>
+            <div style={{ fontSize: 11, fontWeight: 600, color: C.mutedFg, textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 8 }}>
               Filter by Status
             </div>
             <FilterTabs
@@ -396,7 +396,7 @@ export default function Dashboard() {
           </div>
 
           <div style={{ position: "relative", flex: 1, maxWidth: 350 }}>
-            <div style={{ fontSize: 12, fontWeight: 500, color: C.mutedFg, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>
+            <div style={{ fontSize: 11, fontWeight: 600, color: C.mutedFg, textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 8 }}>
               Search Orders
             </div>
             <div style={{ position: "relative" }}>
