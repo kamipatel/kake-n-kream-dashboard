@@ -360,7 +360,7 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
           fontSize: 12,
           fontWeight: 500,
           color: C.mutedFg,
-          marginBottom: 8,
+          marginBottom: 4,
           textTransform: "uppercase",
           letterSpacing: 1,
           display: "flex",
@@ -377,9 +377,7 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
           whiteSpace: "pre-wrap",
           lineHeight: 1.6,
           margin: 0,
-        }}>
-          {items || "No items listed"}
-        </pre>
+        }}>{items || "No items listed"}</pre>
       </div>
 
       {/* Callouts (Allergies / Notes) */}
@@ -475,7 +473,7 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
           justifyContent: "space-between",
         }}>
           <span>Requested on {order._date ? new Date(order._date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "\u2014"}</span>
-          {order.id && <span style={{ fontFamily: "monospace" }}>#{order.id.slice(-6)}</span>}
+          {order.id && <span style={{ fontFamily: "monospace" }}>#{order.id.replace("order-", "ORD-").toUpperCase()}</span>}
         </div>
       </div>
     </div>
