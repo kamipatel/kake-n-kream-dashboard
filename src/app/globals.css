@@ -66,6 +66,20 @@ body { font-family: 'DM Sans', sans-serif; background: #FFFAF7; color: #2A1810; 
   border-radius: 8px;
 }
 
+/* Copy icon - show on hover (desktop), always visible on mobile */
+.contact-pill .copy-trigger {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.contact-pill:hover .copy-trigger {
+  opacity: 1;
+}
+@media (hover: none) {
+  .contact-pill .copy-trigger {
+    opacity: 0.5;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

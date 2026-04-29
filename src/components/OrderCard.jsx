@@ -8,7 +8,6 @@ import {
   MailIcon,
   CopyIcon,
   CheckIcon,
-  BoxIcon,
   ChevronDownIcon,
 } from "./icons";
 
@@ -99,11 +98,11 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
   };
 
   const actionButton = (() => {
-    if (status === "pending") return { label: "Confirm Order", color: C.status.confirmed.bg, textColor: C.status.confirmed.fg };
+    if (status === "pending") return { label: "Confirm Order", color: C.primary, textColor: "#FFFFFF" };
     if (status === "confirmed") return { label: "Start Baking", color: C.status.inProgress.bg, textColor: "#FFFFFF" };
     if (status === "inProgress") return { label: "Mark Complete", color: C.status.completed.bg, textColor: "#FFFFFF" };
-    if (status === "completed") return { label: "Reopen Order", color: C.status.pending.bg, textColor: "#FFFFFF" };
-    if (status === "cancelled") return { label: "Reopen Order", color: C.status.pending.bg, textColor: "#FFFFFF" };
+    if (status === "completed") return { label: "Reopen Order", color: "transparent", textColor: C.sub, outline: true };
+    if (status === "cancelled") return { label: "Reopen Order", color: "transparent", textColor: C.sub, outline: true };
     return null;
   })();
 
@@ -167,6 +166,7 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
               {order.phone ? (
                 <a
                   href={`tel:${order.phone}`}
+                  className="contact-pill"
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -182,6 +182,9 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
                 >
                   <PhoneIcon size={12} color={C.mutedFg} />
                   {order.phone}
+                  <span className="copy-trigger" onClick={(e) => { e.preventDefault(); e.stopPropagation(); copyToClipboard(order.phone, "phone"); }} style={{ display: "inline-flex", alignItems: "center", cursor: "pointer", marginLeft: 2 }}>
+                    {copied === "phone" ? <CheckIcon size={10} color={C.status.completed.softFg} /> : <CopyIcon size={10} color={C.mutedFg} />}
+                  </span>
                 </a>
               ) : (
                 <span style={{
@@ -202,6 +205,7 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
               {order.email ? (
                 <a
                   href={`mailto:${order.email}`}
+                  className="contact-pill"
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -216,7 +220,10 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
                   }}
                 >
                   <MailIcon size={12} color={C.mutedFg} />
-                  Email
+                  {order.email}
+                  <span className="copy-trigger" onClick={(e) => { e.preventDefault(); e.stopPropagation(); copyToClipboard(order.email, "email"); }} style={{ display: "inline-flex", alignItems: "center", cursor: "pointer", marginLeft: 2 }}>
+                    {copied === "email" ? <CheckIcon size={10} color={C.status.completed.softFg} /> : <CopyIcon size={10} color={C.mutedFg} />}
+                  </span>
                 </a>
               ) : (
                 <span style={{
@@ -231,50 +238,8 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
                   opacity: 0.6,
                 }}>
                   <MailIcon size={12} color={C.mutedFg} />
-                  {"\u2014"}
+                  No email provided
                 </span>
-              )}
-              {order.phone && (
-                <button
-                  onClick={() => copyToClipboard(order.phone, "phone")}
-                  className="btn-hover"
-                  title="Copy phone"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    fontSize: 11,
-                    color: C.mutedFg,
-                    background: C.muted,
-                    border: "none",
-                    padding: "4px 6px",
-                    borderRadius: 6,
-                    cursor: "pointer",
-                  }}
-                >
-                  {copied === "phone" ? <CheckIcon size={10} color={C.status.completed.softFg} /> : <CopyIcon size={10} color={C.mutedFg} />}
-                </button>
-              )}
-              {order.email && (
-                <button
-                  onClick={() => copyToClipboard(order.email, "email")}
-                  className="btn-hover"
-                  title="Copy email"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    fontSize: 11,
-                    color: C.mutedFg,
-                    background: C.muted,
-                    border: "none",
-                    padding: "4px 6px",
-                    borderRadius: 6,
-                    cursor: "pointer",
-                  }}
-                >
-                  {copied === "email" ? <CheckIcon size={10} color={C.status.completed.softFg} /> : <CopyIcon size={10} color={C.mutedFg} />}
-                </button>
               )}
             </div>
           </div>
@@ -282,13 +247,12 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
 
         <div style={{ textAlign: "right", flexShrink: 0 }}>
           {/* Status badge with dropdown */}
-          <div ref={dropdownRef} style={{ position: "relative", display: "inline-block" }}>
+          <div ref={dropdownRef} style={{ position: "relative", display: "inline-flex", alignItems: "center", gap: 4 }}>
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: 4,
                 padding: "6px 12px",
                 borderRadius: 10,
                 fontSize: 12,
@@ -302,8 +266,24 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
                 fontFamily: "'DM Sans', sans-serif",
               }}
             >
-              <div style={{ width: 6, height: 6, borderRadius: "50%", background: s.fg, opacity: 0.6 }} />
               {STATUS_LABELS[status]}
+            </button>
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              aria-label="Change status"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 32,
+                height: 32,
+                padding: 0,
+                borderRadius: 8,
+                background: s.bg,
+                border: `1px solid ${s.border}`,
+                cursor: "pointer",
+              }}
+            >
               <ChevronDownIcon size={12} color={s.fg} />
             </button>
 
@@ -390,18 +370,7 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
         borderRadius: 16,
         background: C.bgAlt,
         border: `1px solid ${C.border}`,
-        position: "relative",
-        overflow: "hidden",
       }}>
-        <div style={{
-          position: "absolute",
-          top: -10,
-          right: -10,
-          opacity: 0.05,
-          transform: "rotate(15deg)",
-        }}>
-          <BoxIcon size={80} color={C.brown} />
-        </div>
 
         <div style={{
           fontSize: 12,
@@ -424,8 +393,6 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
           whiteSpace: "pre-wrap",
           lineHeight: 1.6,
           margin: 0,
-          position: "relative",
-          zIndex: 1,
         }}>
           {items || "No items listed"}
         </pre>
@@ -486,14 +453,14 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
             width: "100%",
             padding: "14px 20px",
             borderRadius: 14,
-            border: "none",
+            border: actionButton.outline ? `1px solid ${C.border}` : "none",
             background: actionButton.color,
             color: actionButton.textColor,
             fontFamily: "'DM Sans', sans-serif",
             fontSize: 15,
             fontWeight: 600,
             cursor: "pointer",
-            boxShadow: `0 4px 12px ${actionButton.color}40`,
+            boxShadow: actionButton.outline ? "none" : `0 4px 12px ${actionButton.color}40`,
             transition: "all 0.2s ease",
           }}
         >
