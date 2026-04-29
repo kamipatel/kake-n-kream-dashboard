@@ -79,15 +79,15 @@ export const C = {
 
   // Allergy / notes sections
   allergy: {
-    bg: "#FEF2F2",
-    border: "#FEE2E2",
-    text: "#991B1B",
-    icon: "#DC2626"
+    bg: "#FFF9E6",
+    border: "#F5E6C8",
+    text: "#5C3A28",
+    icon: "#8B6914"
   },
   notes: {
-    bg: "#FDFCF0",
-    border: "#F9F5D7",
-    text: "#43281C",
-    icon: "#B45309"
+    bg: "#FFF5F0",
+    border: "#E8D8D0",
+    text: "#5C3A28",
+    icon: "#5C3A28"
   }
 };

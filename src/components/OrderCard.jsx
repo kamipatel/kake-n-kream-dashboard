@@ -98,7 +98,7 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
   };
 
   const actionButton = (() => {
-    if (status === "pending") return { label: "Confirm Order", color: C.primary, textColor: "#FFFFFF" };
+    if (status === "pending") return { label: "Confirm Order", color: "#FF69B4", textColor: "#FFFFFF" };
     if (status === "confirmed") return { label: "Start Baking", color: C.status.inProgress.bg, textColor: "#FFFFFF" };
     if (status === "inProgress") return { label: "Mark Complete", color: C.status.completed.bg, textColor: "#FFFFFF" };
     if (status === "completed") return { label: "Reopen Order", color: "transparent", textColor: C.sub, outline: true };
@@ -116,7 +116,7 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
         borderRadius: 20,
         padding: "24px",
         border: `1px solid ${C.border}`,
-        borderLeft: `4px solid ${s.accent}`,
+        borderLeft: `3px solid ${s.accent}`,
         boxShadow: C.shadowSm,
         display: "flex",
         flexDirection: "column",
@@ -135,14 +135,13 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
             width: 48,
             height: 48,
             borderRadius: 14,
-            background: s.softBg,
+            background: "#FF69B4",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             flexShrink: 0,
-            border: `1px solid ${s.accent}33`,
           }}>
-            <span style={{ fontSize: 20, fontWeight: 500, color: s.softFg }}>
+            <span style={{ fontSize: 20, fontWeight: 500, color: "#FFFFFF" }}>
               {name[0]?.toUpperCase() || "?"}
             </span>
           </div>
@@ -247,13 +246,15 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
 
         <div style={{ textAlign: "right", flexShrink: 0 }}>
           {/* Status badge with dropdown */}
-          <div ref={dropdownRef} style={{ position: "relative", display: "inline-flex", alignItems: "center", gap: 4 }}>
+          <div ref={dropdownRef} style={{ position: "relative", display: "inline-flex", alignItems: "center" }}>
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
+              aria-label={`Status: ${STATUS_LABELS[status]}. Click to change.`}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                padding: "6px 12px",
+                gap: 6,
+                padding: "6px 10px 6px 12px",
                 borderRadius: 10,
                 fontSize: 12,
                 fontWeight: 600,
@@ -267,24 +268,7 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
               }}
             >
               {STATUS_LABELS[status]}
-            </button>
-            <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-              aria-label="Change status"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 32,
-                height: 32,
-                padding: 0,
-                borderRadius: 8,
-                background: s.bg,
-                border: `1px solid ${s.border}`,
-                cursor: "pointer",
-              }}
-            >
-              <ChevronDownIcon size={12} color={s.fg} />
+              <ChevronDownIcon size={10} color={s.fg} />
             </button>
 
             {dropdownOpen && (
@@ -366,7 +350,7 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
 
       {/* Main Order Content */}
       <div style={{
-        padding: "16px 20px",
+        padding: "14px 16px",
         borderRadius: 16,
         background: C.bgAlt,
         border: `1px solid ${C.border}`,
@@ -426,9 +410,10 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
               flex: 1,
               minWidth: 200,
               padding: "12px 16px",
-              borderRadius: 12,
+              borderRadius: "0 12px 12px 0",
               background: C.notes.bg,
               border: `1px solid ${C.notes.border}`,
+              borderLeft: `3px solid ${C.notes.icon}`,
               display: "flex",
               gap: 12,
             }}>
@@ -451,7 +436,7 @@ export default function OrderCard({ order, today, status, timestamps, onStatusCh
           className="btn-hover"
           style={{
             width: "100%",
-            padding: "14px 20px",
+            padding: "16px 24px",
             borderRadius: 14,
             border: actionButton.outline ? `1px solid ${C.border}` : "none",
             background: actionButton.color,

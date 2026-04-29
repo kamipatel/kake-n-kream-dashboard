@@ -1,84 +1,62 @@
 import { C } from "./theme";
-import { BoxIcon, ClockIcon, CheckIcon } from "./icons";
 
 const stats = [
-  {
-    key: "pending",
-    label: "Pending",
-    color: C.primary,
-    bg: C.primarySoft,
-    icon: (size, color) => <BoxIcon size={size} color={color} />,
-  },
-  {
-    key: "inProgress",
-    label: "In Progress",
-    color: "#4FC3F7",
-    bg: "#E1F5FE",
-    icon: (size, color) => <ClockIcon size={size} color={color} />,
-  },
-  {
-    key: "completed",
-    label: "Completed",
-    color: "#4CAF50",
-    bg: "#E8F5E9",
-    icon: (size, color) => <CheckIcon size={size} color={color} />,
-  },
+  { key: "pending", label: "Pending", color: C.status.pending.bg },
+  { key: "confirmed", label: "Confirmed", color: C.status.confirmed.bg },
+  { key: "inProgress", label: "In Progress", color: C.status.inProgress.bg },
+  { key: "completed", label: "Completed", color: C.status.completed.bg },
+  { key: "cancelled", label: "Cancelled", color: C.status.cancelled.accent },
 ];
 
 export default function StatsBar({ statusCounts }) {
   return (
-    <div style={{ display: "flex", gap: 12, marginTop: 24, flexWrap: "wrap" }}>
-      {stats.map((s) => (
+    <div
+      role="status"
+      aria-label="Order status summary"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 20,
+        flexWrap: "wrap",
+        marginTop: 16,
+        padding: "14px 20px",
+        borderRadius: 14,
+        background: C.card,
+        border: `1px solid ${C.border}`,
+        boxShadow: C.shadowSm,
+      }}
+    >
+      {stats.map((s, i) => (
         <div
           key={s.key}
-          role="status"
-          aria-label={`${s.label}: ${statusCounts[s.key] || 0}`}
           style={{
-            flex: 1,
-            minWidth: 140,
-            padding: "20px 24px",
-            borderRadius: 16,
-            background: C.card,
-            border: `1px solid ${C.border}`,
-            boxShadow: C.shadowSm,
             display: "flex",
             alignItems: "center",
-            gap: 16,
+            gap: 8,
           }}
         >
           <div style={{
-            width: 48,
-            height: 48,
-            borderRadius: 12,
-            background: s.bg,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            width: 10,
+            height: 10,
+            borderRadius: "50%",
+            background: s.color,
             flexShrink: 0,
+          }} />
+          <span style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: 14,
+            fontWeight: 600,
+            color: C.brown,
           }}>
-            {s.icon(22, s.color)}
-          </div>
-          <div>
-            <div style={{
-              fontSize: 26,
-              fontWeight: 500,
-              fontFamily: "'DM Sans', sans-serif",
-              color: C.brown,
-              lineHeight: 1,
-            }}>
-              {statusCounts[s.key] || 0}
-            </div>
-            <div style={{
-              fontSize: 13,
-              color: C.mutedFg,
-              fontWeight: 400,
-              marginTop: 4,
-              textTransform: "uppercase",
-              letterSpacing: 0.5,
-            }}>
-              {s.label}
-            </div>
-          </div>
+            {statusCounts[s.key] || 0}
+          </span>
+          <span style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: 13,
+            color: C.sub,
+          }}>
+            {s.label}
+          </span>
         </div>
       ))}
     </div>

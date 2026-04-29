@@ -328,7 +328,7 @@ export default function Dashboard() {
       </header>
 
       {/* Main Content Area */}
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: "32px 20px 60px" }}>
+      <main style={{ maxWidth: 900, margin: "0 auto", padding: "20px 20px 48px" }}>
         {/* Stats Section */}
         {!loading && !error && (
           <>
@@ -337,11 +337,11 @@ export default function Dashboard() {
             {/* Summary line */}
             {statusCounts.pending > 0 && (
               <div style={{
-                marginTop: 16,
+                marginTop: 12,
                 padding: "12px 20px",
-                borderRadius: 12,
-                background: C.primarySoft,
-                border: `1px solid ${C.primary}33`,
+                borderRadius: "0 12px 12px 0",
+                background: "#FFF5F0",
+                borderLeft: "3px solid #FF69B4",
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: 14,
                 fontWeight: 500,
@@ -376,13 +376,13 @@ export default function Dashboard() {
 
         {/* Filter & Search Bar */}
         <div style={{
-          marginTop: 40,
+          marginTop: 20,
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-end",
           flexWrap: "wrap",
-          gap: 20,
-          marginBottom: 24,
+          gap: 12,
+          marginBottom: 16,
         }}>
           <div>
             <div style={{ fontSize: 12, fontWeight: 500, color: C.mutedFg, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>
@@ -463,7 +463,7 @@ export default function Dashboard() {
             <div style={{
               display: "grid",
               gridTemplateColumns: "1fr",
-              gap: 16,
+              gap: 12,
             }}>
               {filteredOrders.map((order, i) => (
                 <OrderCard

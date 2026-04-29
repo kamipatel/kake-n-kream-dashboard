@@ -13,7 +13,7 @@ export default function FilterTabs({ filter, onFilterChange, pendingCount = 0 })
   const activeIndex = tabs.findIndex((t) => t.key === filter);
 
   return (
-    <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch", marginTop: 20 }}>
+    <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
       <div
         role="tablist"
         aria-label="Filter orders"
@@ -56,8 +56,7 @@ export default function FilterTabs({ filter, onFilterChange, pendingCount = 0 })
               fontFamily: "'DM Sans', sans-serif",
               fontSize: 13,
               fontWeight: 500,
-              padding: "10px 18px",
-              minWidth: 80,
+              padding: "8px 14px",
               borderRadius: 10,
               border: "none",
               cursor: "pointer",
@@ -68,7 +67,7 @@ export default function FilterTabs({ filter, onFilterChange, pendingCount = 0 })
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              gap: 6,
+              gap: 4,
             }}
           >
             {label}
@@ -76,13 +75,13 @@ export default function FilterTabs({ filter, onFilterChange, pendingCount = 0 })
               <span style={{
                 background: C.primary,
                 color: "#FFFFFF",
-                fontSize: 11,
+                fontSize: 10,
                 fontWeight: 600,
-                borderRadius: 10,
-                padding: "1px 7px",
-                minWidth: 20,
+                borderRadius: 8,
+                padding: "0px 5px",
+                minWidth: 16,
                 textAlign: "center",
-                lineHeight: "18px",
+                lineHeight: "16px",
               }}>
                 {pendingCount}
               </span>
