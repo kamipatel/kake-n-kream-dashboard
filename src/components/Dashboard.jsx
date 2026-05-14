@@ -51,6 +51,12 @@ export default function Dashboard() {
 
   useEffect(() => { fetchOrders(); }, []);
 
+  // Auto-refresh every 2 minutes
+  useEffect(() => {
+    const interval = setInterval(fetchOrders, 2 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const parseCSV = (text) => {
     const rows = [];
     let row = [];
@@ -89,9 +95,7 @@ export default function Dashboard() {
     setLoading(orders.length === 0);
     setError(null);
     try {
-      const res = await fetch(
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vSL74L9ZchvRz6MdlQt4s-Ktb6Z40WPftyuhT_TI19H8jCXoqbxf2tUpQLEZ480ir0UDFOoj-GjSxAn/pub?output=csv"
-      );
+      const res = await fetch(`/api/orders?_t=${Date.now()}`);
       if (!res.ok) throw new Error("Failed to load");
       const text = await res.text();
       const rows = parseCSV(text);
